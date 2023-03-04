@@ -1,8 +1,8 @@
 package Programmers.codetest_basic_100;
 
-import java.awt.*;
 import java.util.ArrayList;
 // array to list 가 String으로만 되는거 같아서 이리저리 생각하다가 생각이 안나서, 걍 arrayList로 반환처리함.
+// 또한 생각이 안나서 2중 포문으로 해결해버림..
 
 public class 등수_매기기 {
 
