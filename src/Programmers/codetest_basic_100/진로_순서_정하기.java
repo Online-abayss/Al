@@ -12,7 +12,7 @@ public class 진로_순서_정하기 {
 
         Solution solution = new Solution();
 
-        System.out.println(solution.solution(emergency));
+        System.out.println(Arrays.toString(solution.solution(emergency)));
 
     }
 
@@ -20,13 +20,17 @@ public class 진로_순서_정하기 {
         public int[] solution(int[] emergency) {
             int[] answer = new int[emergency.length];
 
-            Integer[] b = Arrays.stream(emergency).boxed().toArray(Integer[]::new);
+            for (int i = 0; i < emergency.length; i++) {
 
-            Arrays.sort(emergency, Collections.reverseOrder());
+                for (int j = 0; j < emergency.length; j++) {
 
-            for (int a : arr_int) {
+                    if (emergency[i] < emergency[j]) {
 
-11
+                        answer[i]++;
+                    }
+                }
+
+                answer[i]++;
             }
 
             return answer;
