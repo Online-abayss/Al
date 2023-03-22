@@ -1,5 +1,7 @@
 package Programmers.level_1;
 
+import java.util.Arrays;
+
 public class 소수_찾기_check {
 
     public static void main(String[] args) {
