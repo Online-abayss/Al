@@ -1,6 +1,6 @@
 package Programmers.level_1;
 
-public class 크긱_작은_부분문자열 {
+public class 크기_작은_부분문자열 {
 
     public static void main(String[] args) {
 
