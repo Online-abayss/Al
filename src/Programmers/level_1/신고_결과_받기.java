@@ -76,6 +76,8 @@ public class 신고_결과_받기 {
 //            }
 //
 //            // 발송자 명단 및 cnt 세기
+
+
 //
 //            HashMap<String, Integer> answer_map = new HashMap<>();
 //
