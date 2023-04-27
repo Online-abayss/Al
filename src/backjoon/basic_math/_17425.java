@@ -3,6 +3,7 @@ package backjoon.basic_math;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class _17425 {
 
@@ -10,22 +11,34 @@ public class _17425 {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int a = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
+        long[] fx = new long[1000001];
+        long[] gx = new long[1000001];
 
+        Arrays.fill(fx, 1);
 
-        for (int i = 0; i < a; i++) {
+        for (int i = 2; i < fx.length; i++) {
 
-            int answer = 0;
+            for (int j = 1; i*j < fx.length; j++) {
 
-            int b = Integer.parseInt(br.readLine());
-
-            for (int j = 1; j <= b; j++) {
-
-                answer += (b / j) * j;
+                fx[i*j] += i;
             }
 
-            System.out.println(answer);
         }
+
+        for (int i = 1; i < fx.length; i++) {
+
+            gx[i] = gx[i-1] + fx[i];
+        }
+
+        int t = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < t; i++) {
+
+            sb.append(gx[Integer.parseInt(br.readLine())] + "\n");
+        }
+
+        System.out.println(sb);
     }
 }
