@@ -3,34 +3,36 @@ package backjoon.basic_math;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
-public class _3085 {
+public class _1107 {
 
     public static void main(String[] args) throws IOException {
 
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int goal_chanel = Integer.parseInt(br.readLine());
 
         int t = Integer.parseInt(br.readLine());
 
-        List<String> str_lst = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int[] ban_buttons = new int[t];
 
         for (int i = 0; i < t; i++) {
 
-            String[] arr_str = br.readLine().split("");
+            ban_buttons[i] = Integer.parseInt(st.nextToken());
+        }
 
-            for (String s : arr_str) {
+        int cnt = 0;
 
-                str_lst.add(s);
-            }
+        while (true) {
+
+
         }
 
 
-
-        System.out.println(str_lst);
-
-
     }
+
+
 }
