@@ -42,7 +42,6 @@ public class _1260 {
         System.out.println();
 
         visited = new boolean[N + 1];
-
         bfs(V);
 
     }
@@ -50,7 +49,7 @@ public class _1260 {
     private static void dfs(int v) {
 
         visited[v] = true;
-        System.out.println(v + " ");
+        System.out.print(v + " ");
 
         if (v > arr.length -1) {
 
@@ -72,23 +71,22 @@ public class _1260 {
 
         queue.add(v);
         visited[v] = true;
-        System.out.println(v + " ");
+        System.out.print(v + " ");
 
         while (!queue.isEmpty()) {
 
-            int tmep = queue.poll();
+            int temp = queue.poll();
 
             for (int node = 1; node < arr.length; node++) {
 
-                if (arr[tmep][node] == 1 && visited[node] == false) {
+                if (arr[temp][node] == 1 && visited[node] == false) {
 
                     queue.add(node);
-                    visited[v] = true;
-                    System.out.println(node + " ");
+                    visited[node] = true;
+                    System.out.print(node + " ");
                 }
             }
         }
     }
-
 }
 // https://turtledeveloper.tistory.com/44
