@@ -35,6 +35,8 @@ public class _2644 {
             human_lst.add(new ArrayList<>());
         }
 
+
+
         for (int i = 0; i < t; i++) {
 
             StringTokenizer st = new StringTokenizer(br.readLine());
