@@ -13,8 +13,6 @@ public class _1325 {
 
     static ArrayList<ArrayList<Integer>> computer_lst = new ArrayList<>();
 
-
-
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -54,20 +52,23 @@ public class _1325 {
 
         for (int i = 1; i <= a; i++) {
 
-            max = Math.max(max, arr[i]);
+            if (arr[i] > max) {
+
+                max = arr[i];
+            }
         }
 
-        int num = 0;
+        StringBuilder sb = new StringBuilder();
 
         for (int i = 1; i <= a; i++) {
 
             if (max == arr[i]) {
 
-                num = i;
+                sb.append(i + " ");
             }
         }
 
-        System.out.println(num + " " + max);
+        System.out.println(sb.toString());
 
     }
 
@@ -79,7 +80,6 @@ public class _1325 {
 
             if (!visited[a]) {
 
-                visited[a] = true;
                 arr[a] ++;
                 dfs(a);
             }
