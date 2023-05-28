@@ -82,6 +82,7 @@ public class _3184 {
                 continue;
             }
 
+
             if (!visited[dx][dy] && !arr[dx][dy].equals("#")) {
 
                 dfs(dx,dy,sheep_nums, wolf_nums);
