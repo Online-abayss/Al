@@ -15,6 +15,9 @@ public class _3184 {
     static int sheep;
     static int wolf;
 
+    static int total_sheep;
+    static int total_wolf;
+
 
     public static void main(String[] args) throws IOException {
 
@@ -29,63 +32,74 @@ public class _3184 {
 
         for (int i = 0; i < weight; i++ ) {
 
-            for (int j = 0; j < height; j++) {
+            String[] arr_s = br.readLine().split("");
 
-                String[] arr_s =  br.readLine().split("");
+            for (int j = 0; j < height; j++) {
 
                 arr[i][j] = arr_s[j];
             }
         }
-
         visited = new boolean[weight][height];
+
 
         for (int i = 0; i < weight; i++) {
 
             for (int j = 0; j < height; j++) {
+                wolf = 0;
+                sheep = 0;
 
-                if (!visited[i][j]) {
+                if (!visited[i][j] && !arr[i][j].equals("#")) {
 
-                    dfs(i, j,0,0);
+                    dfs(i, j);
+
                 }
+                if (sheep > wolf) {
+
+                    wolf = 0;
+                } else {
+
+                    sheep = 0;
+                }
+
+                total_wolf += wolf;
+                total_sheep += sheep;
             }
+
         }
 
-
+        System.out.println(total_sheep + " " + total_wolf);
 
     }
 
-    private static void dfs(int i, int j, int sheep_nums, int wolf_nums) {
+    private static void dfs(int i, int j) {
 
         if (arr[i][j].equals("v")) {
 
-            wolf_nums++;
+            wolf += 1;
         } else if (arr[i][j].equals("o")) {
 
-            sheep_nums++;
+            sheep += 1;
         }
 
-        sheep = sheep_nums;
-        wolf = wolf_nums;
-
         visited[i][j] = true;
+
 
         int[] x = {0,0,-1,1};
         int[] y = {-1,1,0,0};
 
         for (int a = 0; a < 4; a ++) {
 
-            int dx = i + x[i];
-            int dy = j + y[i];
+            int dx = i + x[a];
+            int dy = j + y[a];
 
             if (dx < 0 || dy < 0 || dx >= weight || dy >= height) {
 
                 continue;
             }
 
-
             if (!visited[dx][dy] && !arr[dx][dy].equals("#")) {
 
-                dfs(dx,dy,sheep_nums, wolf_nums);
+                dfs(dx,dy);
             }
 
         }
