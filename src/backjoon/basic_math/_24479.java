@@ -10,10 +10,13 @@ import java.util.StringTokenizer;
 public class _24479 {
     static boolean[] visited;
 
+    static int[] arr;
+
     static int dot;
     static int line;
     static int start;
 
+    static int cnt;
     static ArrayList<ArrayList<Integer>> answer_lst = new ArrayList<>();
 
 
@@ -28,7 +31,7 @@ public class _24479 {
         line = Integer.parseInt(st.nextToken());
         start = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < dot; i++) {
+        for (int i = 0; i < dot + 1; i++) {
 
             answer_lst.add(new ArrayList<>());
         }
@@ -52,22 +55,36 @@ public class _24479 {
             Collections.sort(answer_lst.get(i));
         }
 
-        dfs(start, start);
+        cnt = 1;
+
+        arr = new int[dot + 1];
+
+        dfs(start);
+
+
+
+        for (int i = 1; i < arr.length; i++) {
+
+            System.out.println(arr[i]);
+        }
 
 
 
     }
 
-    private static void dfs(int start, int now_number) {
+    private static void dfs(int start) {
+
+        arr[start] = cnt;
 
         visited[start] = true;
 
 
         for (int i : answer_lst.get(start)) {
 
-            if (!visited[i]) {
+            if (!visited[i] && arr[i] == 0) {
 
-                dfs(i, start);
+                cnt++;
+                dfs(i);
             }
         }
 
