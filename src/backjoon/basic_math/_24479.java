@@ -9,9 +9,7 @@ import java.util.StringTokenizer;
 
 public class _24479 {
     static boolean[] visited;
-
     static int[] arr;
-
     static int dot;
     static int line;
     static int start;
