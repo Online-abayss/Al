@@ -13,17 +13,17 @@ public class _11726 {
 
         int n = Integer.parseInt(br.readLine());
 
-        int[] answer = new int[n + 1];
+        int[] answer = new int[1001];
 
-        answer[1] = 0;
+        answer[1] = 1;
         answer[2] = 2;
 
         for (int i = 3; i <= n; i++) {
 
-            answer[i] = i % 2 == 0 ? answer[i - 1] * 2 - 1 : answer[i - 1] + 1;
+            answer[i] = answer[i-2] + answer[i -1] % 10007;
         }
 
-        System.out.println(Arrays.toString(answer));
+        System.out.println(answer[n]);
 
     }
 }
