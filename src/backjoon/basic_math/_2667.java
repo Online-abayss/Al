@@ -66,10 +66,6 @@ public class _2667 {
             System.out.println(cnt_lst.get(1).get(i));
         }
 
-
-
-
-
     }
 
     private static void dfs(int i, int j, int now_pos) {
