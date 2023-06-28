@@ -45,8 +45,6 @@ public class _2178 {
 
         bfs(0,0);
 
-        System.out.println(Arrays.deepToString(map));
-
         System.out.println(map[n-1][m-1]);
 
     }
