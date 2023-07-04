@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class _14888 {
+public class _14888_다시풀기 {
 
     static int t;
 
@@ -35,7 +35,7 @@ public class _14888 {
             map[i] = Integer.parseInt(st.nextToken());
         }
 
-        symbol = new int[t];
+        symbol = new int[4];
 
         st = new StringTokenizer(br.readLine());
 
@@ -44,7 +44,10 @@ public class _14888 {
             symbol[i] = Integer.parseInt(st.nextToken());
         }
 
-        dfs(symbol[0], 0);
+        dfs(map[0], 1);
+
+        System.out.println(max);
+        System.out.println(min);
     }
 
     private static void dfs(int now_num, int depth) {
