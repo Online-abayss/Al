@@ -3,9 +3,6 @@ package backjoon.basic_math;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 public class _17413 {
@@ -14,44 +11,50 @@ public class _17413 {
 
     public static void main(String[] args) throws IOException {
 
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String s = br.readLine();
+        Stack<Character> stack = new Stack<>();
 
-        Stack<String> test_stack = new Stack<>();
-        Queue<String> test_queue = new LinkedList<>();
+        boolean check = false;
 
-        String[] input_text = br.readLine().split("");
-        String pop_text = "";
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == '<'){
+                check = true;
+                while(!stack.empty()){
+                    sb.append(stack.pop());
+                }
+                sb.append(s.charAt(i));
+            }
 
-        int cnt = 0;
+            else if(s.charAt(i) == '>'){
+                check = false;
+                sb.append(s.charAt(i));
+            }
 
-        int black_cnt = 0;
+            else if(check){
+                sb.append(s.charAt(i));
+            }
 
-        for (String s : input_text) {
-
-            if (s.equals("<")) {
-
-                cnt = 1;
-
-                while (!test_stack.isEmpty()) {
-
-                    System.out.print(test_stack.pop());
+            else if(!check){
+                if(s.charAt(i) == ' '){
+                    while(!stack.empty()){
+                        sb.append(stack.pop());
+                    }
+                    sb.append(s.charAt(i));
                 }
 
-                System.out.print(s);
-            } else if (s.equals(">")) {
-
-                cnt = 0;
-                System.out.print(s);
-
-            } else if (cnt == 1) {
-
-                System.out.println(s);
-            } else if (cnt == 0) {
-
-
+                else {
+                    stack.push(s.charAt(i));
+                }
             }
         }
+
+        while(!stack.empty()){
+            sb.append(stack.pop());
+        }
+
+        System.out.println(sb.toString());
 
     }
 
