@@ -107,9 +107,104 @@ package backjoon.basic_math;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class _1303 {
 
+    static int n;
+    static int m;
+    static char[][] map;
+    static boolean[][] visited;
+
+    static int[] dx = {0,0,-1,1};
+    static int[] dy = {-1,1,0,0};
+    static int cnt;
+
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        map = new char[n][m];
+        visited = new boolean[n][m];
+
+        for (int i = 0; i < n; i++) {
+
+            char[] char_text = br.readLine().toCharArray();
+
+            for (int j = 0 ; j < m; j++) {
+
+                map[i][j] = char_text[j];
+            }
+        }
+
+        int w_sum = 0;
+        int b_sum = 0;
+
+        for (int i = 0 ; i < n; i++) {
+
+            for (int j = 0; j < m; j++) {
+
+                cnt = 1;
+
+                if (!visited[i][j] && map[i][j] == 'W') {
+
+                    bfs(i, j, 'W');
+                    w_sum += cnt * cnt;
+
+                }
+                else if (!visited[i][j] && map[i][j] == 'B'){
+
+                    bfs(i,j, 'B');
+                    b_sum += cnt * cnt;
+                }
+            }
+        }
+
+        System.out.println(w_sum + " " + b_sum);
+
+    }
+
+    private static void bfs(int i, int j, char text) {
+
+        Queue<int[]> q = new LinkedList<>();
+
+        q.offer(new int[]{i,j});
+
+        visited[i][j] = true;
+
+        while (!q.isEmpty()) {
+
+            int[] now = q.remove();
+
+            for (int a = 0; a < 4; a++) {
+
+                int x = dx[a] + now[0];
+                int y= dy[a] + now[1];
+
+                if (x<0 || y< 0 || x >= n || y >= m) {
+
+                    continue;
+                }
+
+                if (!visited[x][y] && map[x][y] == text) {
+
+                    cnt ++;
+                    visited[x][y] = true;
+                    q.add(new int[]{x,y});
+                }
+
+            }
+        }
+
+
+    }
 
 }
