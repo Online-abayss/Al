@@ -6,11 +6,8 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class _10972_다시풀기 {
-
     static int t;
     static int[] numbers_arr;
-
-
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
