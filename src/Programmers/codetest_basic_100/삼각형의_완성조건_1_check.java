@@ -59,6 +59,8 @@ public class 삼각형의_완성조건_1_check {
 
 
 
+
+
     }
 
     static class Solution {
