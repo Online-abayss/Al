@@ -2,7 +2,7 @@
 //
 //import java.util.Arrays;
 //
-//public class 삼각형의_완성조건_1_check {
+//public class 삼각형의_완성조건_1_check_o {
 //
 //    public static void main(String[] args) {
 //
@@ -50,22 +50,34 @@
 
 package Programmers.codetest_basic_100;
 
-import java.util.Arrays;
-
-public class 삼각형의_완성조건_1_check {
+public class 삼각형의_완성조건_1_check_o {
 
     public static void main(String[] args) {
 
+        Solution solution = new Solution();
 
+        int[] sides = {3, 6 , 2};
 
-
-
+        System.out.println(solution.solution(sides));
 
     }
 
     static class Solution {
         public int solution(int[] sides) {
             int answer = 0;
+
+            int max = Integer.MIN_VALUE;
+            int sum = 0;
+
+            for (int i = 0; i < sides.length; i ++) {
+
+                max = Math.max(max, sides[i]);
+                sum += sides[i];
+
+            }
+
+            answer = sum <= 2 * max ? 2 : 1;
+
             return answer;
         }
     }
