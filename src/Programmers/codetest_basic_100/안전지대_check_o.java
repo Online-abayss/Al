@@ -2,7 +2,7 @@
 package Programmers.codetest_basic_100;
 //
 //// 어렵다... 인터넷보고 확인해봤다... 대략 어떤느낌으로 풀어야하는지는 알겠다.
-//public class 안전지대_check {
+//public class 안전지대_check_o {
 //
 //    public static void main(String[] args) {
 //
@@ -62,7 +62,7 @@ package Programmers.codetest_basic_100;
 //}
 
 
-public class 안전지대_check {
+public class 안전지대_check_o {
 
     public static void main(String[] args) {
 
@@ -70,13 +70,69 @@ public class 안전지대_check {
 
         Solution solution = new Solution();
 
+        System.out.println(solution.solution(board));
+
 
     }
 
     static class Solution {
         public int solution(int[][] board) {
             int answer = 0;
+
+            length = board.length;
+
+            map = new int[length][length];
+
+            for (int i = 0; i < length; i++) {
+
+                for (int j = 0; j < length; j++) {
+
+                    if (board[i][j] == 1) {
+
+                        boom_board(i,j);
+                    }
+                }
+            }
+
+
+
+            for (int i = 0; i < length; i++) {
+
+                for (int j = 0; j < length; j++) {
+
+                    if (map[i][j] == 0) {
+
+                        answer ++;
+                    }
+                }
+            }
+
+
             return answer;
         }
+
+        private void boom_board(int i, int j) {
+
+            map[i][j] = 1;
+
+            for (int a = 0; a < 8; a++) {
+
+                int x = dx[a] + i;
+                int y = dy[a] + j;
+
+                if (x < 0 || y < 0 || x >= length || y >= length) {
+
+                    continue;
+                }
+                map[x][y] = 1;
+            }
+
+        }
     }
+
+    static int length;
+    static int[][] map;
+
+    static int[] dx = {0,0,1,-1,1,1,-1,-1};
+    static int[] dy = {1,-1,0,0,1,-1,1,-1};
 }
