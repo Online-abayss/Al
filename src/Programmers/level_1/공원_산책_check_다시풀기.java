@@ -14,6 +14,8 @@ public class 공원_산책_check_다시풀기 {
         System.out.println(Arrays.toString(solution.solution(park,routes)));
 
     }
+
+
 // 이제 제대로 푼거 같은데 런타임 오류 및 틀린 에제들이 뭔지 모르겠으니 나중에 비교하면서 풀기 https://123okk2.tistory.com/432
     static class Solution {
         public int[] solution(String[] park, String[] routes) {
