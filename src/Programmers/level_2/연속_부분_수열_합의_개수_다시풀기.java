@@ -17,33 +17,64 @@ public class 연속_부분_수열_합의_개수_다시풀기 {
     }
 
 
+//    static class Solution {
+//        public int solution(int[] elements) {
+//
+//            int[] new_map = new int[elements.length * 2];
+//
+//            for (int i = 0; i < elements.length; i++) {
+//
+//                new_map[i] = elements[i];
+//                new_map[i + elements.length] = elements[i];
+//            }
+//
+//            Set<Integer> set = new HashSet<>();
+//
+//            for (int i = 0; i <= elements.length; i++) {
+//
+//                int sum = 0;
+//                for (int j = i; j < i + elements.length; j++) {
+//
+//                    sum += new_map[j];
+//                    set.add(sum);
+//
+//                }
+//            }
+//
+//            return set.size();
+//
+//        }
+//
+//    }
+
     static class Solution {
         public int solution(int[] elements) {
+            int answer = 0;
 
-            int[] new_map = new int[elements.length * 2];
+            int[] new_elements = new int[elements.length * 2];
 
             for (int i = 0; i < elements.length; i++) {
 
-                new_map[i] = elements[i];
-                new_map[i + elements.length] = elements[i];
+                new_elements[i] = elements[i];
+                new_elements[i + elements.length] = elements[i];
             }
 
-            Set<Integer> set = new HashSet<>();
+            HashSet<Integer> map = new HashSet<>();
 
-            for (int i = 0; i <= elements.length; i++) {
+            for (int i = 0; i < elements.length; i++) {
 
                 int sum = 0;
+
                 for (int j = i; j < i + elements.length; j++) {
 
-                    sum += new_map[j];
-                    set.add(sum);
-
+                    sum += new_elements[j];
+                    map.add(sum);
                 }
             }
 
-            return set.size();
+            answer = map.size();
 
+            return answer;
         }
-
     }
 }

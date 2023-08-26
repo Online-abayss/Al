@@ -2,7 +2,7 @@ package Programmers.level_2;
 
 import java.util.LinkedList;
 
-public class 캐시_얼릉다시풀기 {
+public class 캐시 {
 
     public static void main(String[] args) {
 
@@ -45,8 +45,9 @@ public class 캐시_얼릉다시풀기 {
                 }
             }
 
-            
+
             return answer;
         }
     }
+
 }
