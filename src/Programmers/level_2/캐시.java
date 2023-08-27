@@ -37,7 +37,7 @@ public class 캐시 {
                 } else {
 
                     answer += 5;
-                    if (test.size() > cacheSize) {
+                    if (test.size() >= cacheSize) {
 
                         test.remove(0);
                     }
