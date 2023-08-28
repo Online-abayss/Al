@@ -1,11 +1,9 @@
 package Programmers.level_2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class 의상 {
+public class 의상_다른버전으로풀기 {
 
     public static void main(String[] args) {
 
@@ -22,30 +20,21 @@ public class 의상 {
     static class Solution {
 
         public int solution(String[][] clothes) {
-            int answer = 0;
+            int answer = 1;
 
             Map<String, Integer> map = new HashMap<>();
 
             for (int i = 0; i < clothes.length; i++) {
 
-                if (map.get(clothes[i][1]) == null) {
-
-                    map.put(clothes[i][1], 1);
-                }
-                else {
-
-                    map.put(clothes[i][1], map.get(clothes[i][1]) +1);
-                }
+                map.put(clothes[i][1], map.getOrDefault(clothes[i][1], 1) + 1);
             }
 
-            for (String s : map.keySet()) {
+            for (String key : map.keySet()) {
 
-                answer += (map.get(s) + 1);
+                answer *= map.get(key);
             }
 
-            answer --;
-
-            return answer;
+            return answer - 1;
         }
 
 
