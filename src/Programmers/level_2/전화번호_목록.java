@@ -1,6 +1,8 @@
 package Programmers.level_2;
 
 
+import java.util.HashMap;
+import java.util.Map;
 
 public class 전화번호_목록 {
 
@@ -21,25 +23,19 @@ public class 전화번호_목록 {
         public boolean solution(String[] phone_book) {
             boolean answer = true;
 
-            String[] check_words = phone_book[0].split("");
+            Map<String, Integer> map = new HashMap<>();
 
-            for (int i = 1; i < phone_book.length; i++) {
+            for (int i = 0; i < phone_book.length; i++) {
 
-                String[] words = phone_book[i].split("");
-                int cnt = 0;
-                for (String s : words) {
+                map.put(phone_book[i], i);
+            }
 
-                    for (String x : check_words) {
+            for (int i = 0; i < phone_book.length; i++) {
 
-                        if (s.equals(x)) {
+                for (int j = 0; j < phone_book[i].length(); j++) {
 
-                            cnt ++;
-                        }
-                        if (cnt == check_words.length) {
-
-                            return false;
-                        }
-                    }
+                    if (map.containsKey(phone_book[i].substring(0,j)))
+                        return false;
                 }
             }
 
