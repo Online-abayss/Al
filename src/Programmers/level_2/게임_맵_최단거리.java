@@ -15,56 +15,57 @@ public class 게임_맵_최단거리 {
 
     }
 
-    static boolean[][] visited;
+    static int[][] visited;
     static int[] dx = {1,-1,0,0};
     static int[] dy = {0,0,1,-1};
 
-    static int count;
     static class Solution {
         public int solution(int[][] maps) {
             int answer = 0;
 
-            visited = new boolean[maps[0].length][maps.length];
+            visited = new int[maps.length][maps[0].length];
 
             bfs(maps);
 
-            answer = count;
-            return answer;
+            return answer = visited[maps.length - 1][maps[0].length - 1] == 0 ? -1 : visited[maps.length - 1][maps[0].length - 1];
         }
 
         private void bfs(int[][] maps) {
 
-            int x = 0;
-            int y = 0;
-            visited[x][y] = true;
+            int start_x = 0;
+            int start_y = 0;
+
+            visited[0][0] = 1;
 
             Queue<int[]> queue = new LinkedList<>();
-            queue.add(new int[]{x,y});
+
+            queue.add(new int[]{start_x, start_y});
 
             while (!queue.isEmpty()) {
 
-                int[] temp = queue.remove();
-                int a = temp[0];
-                int b = temp[1];
+                int[] now = queue.poll();
+                int x = now[0];
+                int y = now[1];
 
                 for (int i = 0; i < 4; i++) {
 
-                    int q = a + dx[i];
-                    int w = b + dy[i];
+                    int next_x = x + dx[i];
+                    int next_y = y + dy[i];
 
-                    if (q < 0 || w < 0 || q > maps[0].length - 1 || q > maps.length - 1) {
+                    if (next_y < 0 || next_x <0 || next_x >= maps.length || next_y >= maps[0].length) {
 
                         continue;
                     }
 
-                    if (!visited[q][w] && maps[q][w] == 1) {
+                    if (visited[next_x][next_y] == 0 && maps[next_x][next_y] == 1) {
 
-                        count += 1;
-                        queue.add(new int[]{q, w});
+                        visited[next_x][next_y] = visited[x][y] + 1;
+                        queue.add(new int[]{next_x, next_y});
                     }
                 }
+                }
+
             }
-        }
 
 
     }
