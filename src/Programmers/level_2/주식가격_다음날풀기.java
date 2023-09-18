@@ -14,29 +14,37 @@ public class 주식가격_다음날풀기 {
 
         System.out.println(Arrays.toString(solution.solution(prices)));
     }
-// 1,2,3  /3   / 4
-    // 2
+
     static class Solution {
-        public int[] solution(int[] prices) {
+    public int[] solution(int[] prices) {
 
-            int len = prices.length;
+        Stack<Integer> stack = new Stack<>();
 
-            int[] answer = new int[len];
+        int[] answer = new int[prices.length];
 
-            Stack<Integer> stack = new Stack<>();
 
-            for (int i = 0; i < len; i++) {
+        for (int i = 0; i < prices.length; i++) {
 
-                while (!stack.isEmpty() && prices[i] < prices[stack.peek()]) {
+            while (!stack.isEmpty() && prices[stack.peek()] > prices[i]) {
 
-                    int idx = stack.pop();
-                    answer[idx] = i - idx;
-                    System.out.println(i);
-                }
-                stack.push(i);
+                int idx = stack.pop();
+
+                answer[idx] = i - idx;
             }
 
-            return answer;
+            stack.push(i);
         }
+
+        while (!stack.isEmpty()) {
+
+            int idx = stack.pop();
+            answer[idx] = prices.length - idx - 1;
+        }
+
+
+
+        return answer;
+
     }
+}
 }
