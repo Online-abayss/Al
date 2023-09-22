@@ -7,7 +7,7 @@ public class 가장_큰_수 {
 
     public static void main(String[] args) {
 
-        int[] number = {3, 30, 34};
+        int[] number = {0,0};
 
         Solution solution = new Solution();
 
@@ -19,51 +19,32 @@ public class 가장_큰_수 {
         public String solution(int[] numbers) {
             String answer = "";
 
-            String[] s = new String[numbers.length];
+            String[] str_arr = new String[numbers.length];
 
-            for (int i = 0; i < numbers.length; i++) {
+            for (int i = 0; i < numbers.length;i ++) {
 
-                s[i] = String.valueOf(numbers[i]);
+                str_arr[i] = String.valueOf(numbers[i]);
             }
 
-
-            Arrays.sort(s, new Comparator<String>() {
+            Arrays.sort(str_arr, new Comparator<String>() {
                 @Override
                 public int compare(String o1, String o2) {
 
-                    int idx = 0;
+                    String word = o2 + o1;
+                    int result = word.compareTo(o1 + o2);
 
-                        String[] number1_arr = o1.split("");
-                        String[] number2_arr = o2.split("");
-
-                        String number1 = number1_arr[idx];
-                        String number2 = number2_arr[idx];
-
-                        int max_number = number2.compareTo(number1);
-
-                        if (max_number == 0) {
-
-                            while (max_number == 0 && idx < 6) {
-
-                                idx ++;
-                                number1 = number1_arr[idx];
-                                number2 = number2_arr[idx];
-
-                                max_number = number2.compareTo(number1);
-
-                            }
-                        }
-
-
-                    return max_number;
+                    return result;
                 }
             });
 
-            System.out.println(Arrays.toString(s));
+            if (str_arr[0].equals("0")) {
 
-            for (String number : s) {
+                return "0";
+            }
 
-                answer += number;
+            for (String s : str_arr) {
+
+                answer += s;
             }
 
             return answer;
