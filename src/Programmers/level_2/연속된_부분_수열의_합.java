@@ -45,7 +45,13 @@ public class 연속된_부분_수열의_합 {
 
                 if (sum == k) {
 
+                    if (right - len < len) {
 
+
+                        answer[0] = left;
+                        answer[1] = right;
+                        len = right - left;
+                    }
                 }
             }
 
