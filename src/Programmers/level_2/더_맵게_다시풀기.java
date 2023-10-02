@@ -16,29 +16,58 @@ public class 더_맵게_다시풀기 {
 
     }
 
+//    static class Solution {
+//        public int solution(int[] scoville, int K) {
+//            int answer = 0;
+//
+//            PriorityQueue<Integer> que = new PriorityQueue<>();
+//
+//            for (int i = 0; i < scoville.length;i ++) {
+//
+//                que.add(scoville[i]);
+//
+//            }
+//
+//            while (que.peek() < K) {
+//
+//                if (que.size() == 1) {
+//
+//                    return -1;
+//                }
+//                que.add(que.poll() + que.poll() * 2);
+//                answer++;
+//            }
+//
+//            return answer;
+//        }
+//    }
+
+
     static class Solution {
         public int solution(int[] scoville, int K) {
             int answer = 0;
 
-            PriorityQueue<Integer> que = new PriorityQueue<>();
+            PriorityQueue<Integer> pre_q = new PriorityQueue<>();
 
-            for (int i = 0; i < scoville.length;i ++) {
+            for (int a : scoville) {
 
-                que.add(scoville[i]);
-
+                pre_q.add(a);
             }
 
-            while (que.peek() < K) {
+            while (pre_q.peek() < K) {
 
-                if (que.size() == 1) {
+                if (pre_q.size() == 1) {
 
                     return -1;
                 }
-                que.add(que.poll() + que.poll() * 2);
-                answer++;
+
+                pre_q.add(pre_q.poll() + pre_q.poll() * 2);
+                answer ++;
+
             }
 
             return answer;
         }
     }
+
 }

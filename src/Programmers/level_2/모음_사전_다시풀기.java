@@ -35,7 +35,6 @@ public class 모음_사전_다시풀기 {
                 }
             }
 
-
             return answer;
         }
 

@@ -8,8 +8,8 @@ public class k진수에서_소수_개수_구하기_다시풀기 {
 
     public static void main(String[] args) {
 
-        int n  = 437674;
-        int k = 3;
+        int n  = 110011;
+        int k = 10;
 
         Solution solution = new Solution();
 
@@ -63,18 +63,23 @@ public class k진수에서_소수_개수_구하기_다시풀기 {
 
             for (int i = 0; i < numbers_arr.length; i++) {
 
+                if (numbers_arr[i].equals("")) {
+
+                    continue;
+                }
                 if(check_prime(numbers_arr[i])) {
 
                     answer ++;
                 }
             }
 
+
             return answer;
         }
 
-        private boolean check_prime(String s) {
+        public static boolean check_prime(String s) {
 
-            int n = Integer.parseInt(s);
+            long n = Long.parseLong(s);
 
             if (n == 1) {
 
