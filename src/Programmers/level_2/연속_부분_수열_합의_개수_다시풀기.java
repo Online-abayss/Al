@@ -1,7 +1,7 @@
 package Programmers.level_2;
 
 import java.util.HashSet;
-import java.util.Set;
+
 
 public class 연속_부분_수열_합의_개수_다시풀기 {
 
@@ -51,29 +51,28 @@ public class 연속_부분_수열_합의_개수_다시풀기 {
         public int solution(int[] elements) {
             int answer = 0;
 
-            int[] new_elements = new int[elements.length * 2];
+            int[] map = new int[elements.length * 2];
 
             for (int i = 0; i < elements.length; i++) {
 
-                new_elements[i] = elements[i];
-                new_elements[i + elements.length] = elements[i];
+                map[i] = elements[i];
+                map[i + elements.length] = elements[i];
             }
 
-            HashSet<Integer> map = new HashSet<>();
+            HashSet<Integer> number_set = new HashSet<>();
 
-            for (int i = 0; i < elements.length; i++) {
+            for (int i = 0; i <= elements.length; i++) {
 
                 int sum = 0;
 
                 for (int j = i; j < i + elements.length; j++) {
 
-                    sum += new_elements[j];
-                    map.add(sum);
+                    sum += map[j];
+                    number_set.add(sum);
                 }
             }
 
-            answer = map.size();
-
+            answer = number_set.size();
             return answer;
         }
     }
