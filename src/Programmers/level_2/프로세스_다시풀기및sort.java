@@ -34,6 +34,8 @@ public class 프로세스_다시풀기및sort {
                 qu.offer(temp[i]);
             }
 
+            System.out.println(qu);
+
 
             while (!qu.isEmpty()) {
 
