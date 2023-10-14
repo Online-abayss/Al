@@ -102,67 +102,12 @@ public class 방금그곡_다시풀기 {
     static class Solution {
         public String solution(String m, String[] musicinfos) {
             String answer = "";
-            int maxtime = -1;
-
-            m = change_word(m);
-
-            for (String page : musicinfos) {
 
 
-                String[] info = page.split(",");
-                String name = info[2];
 
-                String Sheet_page = change_word(info[3]);
-
-                String[] time_info = info[0].split(":");
-
-                int start_time = Integer.parseInt(time_info[0]) * 60 + Integer.parseInt(time_info[1]);
-                int end = 0;
-
-                time_info = info[1].split(":");
-
-                end = Integer.parseInt(time_info[0]) * 60 + Integer.parseInt(time_info[1]);
-
-                int diff_time = start_time - end;
-
-                if (diff_time > Sheet_page.length()) {
-
-                    StringBuilder newSheet_page = new StringBuilder();
-
-                    for (int i = 0; i < diff_time / Sheet_page.length(); i++) {
-
-                        newSheet_page.append(Sheet_page);
-                    }
-
-                    newSheet_page.append(Sheet_page.substring(0, diff_time % Sheet_page.length()));
-                    Sheet_page = newSheet_page.toString();
-                } else {
-
-                    Sheet_page = Sheet_page.substring(0, diff_time);
-                }
-
-                if (Sheet_page.equals(m) && diff_time > maxtime) {
-
-                    answer = name;
-                    maxtime = diff_time;
-                }
-            }
-
-            return maxtime != -1 ? answer : "(None)";
-        }
-
-        private String change_word(String m) {
-
-            m = m.replaceAll("C#", "H");
-            m = m.replaceAll("D#", "I");
-            m = m.replaceAll("F#", "J");
-            m = m.replaceAll("G#", "K");
-            m = m.replaceAll("A#", "L");
-
-            return m;
+            return answer;
         }
     }
-
 }
 
 //https://velog.io/@hyunjkluz/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A417683-3%EC%B0%A8-%EB%B0%A9%EA%B8%88%EA%B7%B8%EA%B3%A1-Java

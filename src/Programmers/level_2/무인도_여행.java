@@ -118,8 +118,7 @@ public class 무인도_여행 {
     static int[] dx = {0,0,-1,1};
     static int[] dy = {-1,1,0,0};
     static class Solution {
-        public int[] solution(String[] maps) {
-            int[] answer = {};
+        public ArrayList<Integer> solution(String[] maps) {
 
             maps_int = new int[maps.length][maps[0].length()];
             visited = new boolean[maps.length][maps[0].length()];
@@ -142,29 +141,68 @@ public class 무인도_여행 {
 
             }
 
+            ArrayList<Integer> sum_lst = new ArrayList<>();
+
+
             for (int i = 0; i < maps.length; i++) {
 
                 for (int j = 0; j < maps[0].length(); j++) {
 
-                    if (!visited[i][j]) {
+                    if (!visited[i][j] && maps_int[i][j] != 0) {
 
-                        bfs(i,j);
+                        sum_lst.add(bfs(i,j));
                     }
                 }
             }
 
-            return answer;
+            if (sum_lst.isEmpty()) {
+
+                sum_lst.add(-1);
+            }
+
+            Collections.sort(sum_lst);
+
+            return sum_lst;
         }
 
-        private void bfs(int a, int b) {
+        private int bfs(int a, int b) {
 
             Queue<int[]> queue = new LinkedList<>();
 
             queue.add(new int[] {a,b});
 
+            visited[a][b] = true;
+            int sum = maps_int[a][b];
+
+            while (!queue.isEmpty()) {
+
+                int[] now = queue.poll();;
+                int start_x = now[0];
+                int start_y = now[1];
+
+                for (int i = 0; i < 4; i++) {
+
+                    int x = start_x + dx[i];
+                    int y = start_y + dy[i];
+
+                    if (x < 0 || y < 0 || x >= maps_int.length || y >= maps_int[0].length) {
+
+                        continue;
+                    }
+
+                    if (!visited[x][y] && maps_int[x][y] != 0) {
+
+                        visited[x][y] = true;
+                        sum += maps_int[x][y];
+                        queue.add(new int[]{x,y});
+                    }
+                }
 
 
+            }
 
+
+            return sum;
         }
     }
 }
