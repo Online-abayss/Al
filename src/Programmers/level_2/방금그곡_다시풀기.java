@@ -5,9 +5,9 @@ public class 방금그곡_다시풀기 {
 
     public static void main(String[] args) {
 
-        String m = "ABC";
+        String m = "CC#BCC#BCC#BCC#B";
 
-        String[] musicinfos = {"12:00,12:06,HELLO,ABC#ABC#ABC"};
+        String[] musicinfos = {"03:00,03:30,FOO,CC#B", "04:00,04:08,BAR,CC#BCC#BCC#B"};
 
         Solution solution = new Solution();
 
@@ -103,9 +103,64 @@ public class 방금그곡_다시풀기 {
         public String solution(String m, String[] musicinfos) {
             String answer = "";
 
+            int max_time = 0;
+            for (int i = 0; i < musicinfos.length; i++) {
 
+                String[] info_page = musicinfos[i].split(",");
+
+                int start_time = Integer.parseInt(info_page[0].split(":")[0]) * 60 + Integer.parseInt(info_page[0].split(":")[1]);
+                int end_time = Integer.parseInt(info_page[1].split(":")[0]) * 60 + Integer.parseInt(info_page[1].split(":")[1]);
+
+                int diff_time = end_time - start_time;
+                String sheet_info = info_page[3];
+
+                sheet_info = change_sheet_info(sheet_info);
+                if (sheet_info.length() < diff_time) {
+
+                    StringBuilder sb = new StringBuilder();
+
+                    for (int j = 0; j < diff_time / sheet_info.length(); j++) {
+
+                        sb.append(sheet_info);
+                    }
+
+                    sb.append(sb.substring(0, diff_time % sheet_info.length()));
+
+                    sheet_info = sb.toString();
+
+                } else if (sheet_info.length() > diff_time) {
+
+                    sheet_info = sheet_info.substring(0, diff_time + 1);
+
+                }
+
+                m = change_sheet_info(m);
+
+
+                if (sheet_info.contains(m) && diff_time > max_time) {
+
+                    answer = info_page[2];
+                    max_time = diff_time;
+                }
+            }
+
+            if (answer.isEmpty()) {
+
+                answer = "(None)";
+            }
 
             return answer;
+        }
+
+        private String change_sheet_info(String sheet_info) {
+
+            sheet_info = sheet_info.replaceAll("A#", "H");
+            sheet_info = sheet_info.replaceAll("C#", "I");
+            sheet_info = sheet_info.replaceAll("D#", "J");
+            sheet_info = sheet_info.replaceAll("F#", "K");
+            sheet_info = sheet_info.replaceAll("G#", "L");
+
+            return sheet_info;
         }
     }
 }
