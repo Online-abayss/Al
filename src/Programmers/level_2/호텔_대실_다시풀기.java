@@ -1,11 +1,10 @@
 package Programmers.level_2;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class 호텔_대실 {
+public class 호텔_대실_다시풀기 {
 
     public static void main(String[] args) {
 
@@ -92,7 +91,6 @@ public class 호텔_대실 {
 
     static class Solution {
         public int solution(String[][] book_time) {
-            int answer = 1;
 
             int[][] book_time_int = new int[book_time.length][book_time[0].length];
 
@@ -138,24 +136,29 @@ public class 호텔_대실 {
             });
 
             System.out.println(Arrays.deepToString(book_time_int));
+            PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
 
-            for (int i = 1; i < book_time_int.length; i++) {
+            for (int i = 0; i < book_time_int.length; i++) {
 
-                int pre_end_time = book_time_int[i - 1][1];
-                int now_start_time = book_time_int[i][0];
+                int[] room_time = {book_time_int[i][0],book_time_int[i][1]};
 
-                if (pre_end_time > now_start_time) {
+               if (priorityQueue.size() == 0) {
 
+                   priorityQueue.add(room_time[1]);
+                   continue;
+               }
 
-                } else {
+               if (room_time[0] >= priorityQueue.peek()) {
 
+                   priorityQueue.poll();
+                   priorityQueue.add(room_time[1]);
+               } else {
 
-                }
+                   priorityQueue.add(room_time[1]);
+               }
             }
 
-
-
-            return answer;
+            return priorityQueue.size();
         }
     }
 }
