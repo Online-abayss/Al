@@ -43,6 +43,9 @@ public class 행렬_테두리_회전하기 {
             return answer;
         }
 
+
+
+
         private int rotate(int[] query) {
 
             int r1 = query[0] - 1;
