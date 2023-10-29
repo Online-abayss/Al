@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class 호텔_대실_다시풀기 {
+public class 호텔_대실_다시풀기_1 {
 
     public static void main(String[] args) {
 
-        String[][] book_time = {{"15:00", "17:00"}, {"16:40", "18:20"}, {"14:20", "15:20"}, {"14:10", "19:20"}, {"18:20", "21:20"}};
+        String[][] book_time = {{"09:10", "10:10"}, {"10:20", "12:20"}};
 
         Solution solution = new Solution();
 
@@ -91,74 +91,60 @@ public class 호텔_대실_다시풀기 {
 
     static class Solution {
         public int solution(String[][] book_time) {
+            int answer = 0;
 
-            int[][] book_time_int = new int[book_time.length][book_time[0].length];
+            int[][] book_int = new int[book_time.length][book_time[0].length];
+            for (int i = 0; i < book_time.length; i++) {
 
-            for (int i = 0; i < book_time_int.length; i++) {
+                int start_time = Integer.parseInt(book_time[i][0].split(":")[0]) * 60 + Integer.parseInt(book_time[i][0].split(":")[1]);
+                int end_time = Integer.parseInt(book_time[i][1].split(":")[0]) * 60 + Integer.parseInt(book_time[i][1].split(":")[1]) + 10;
 
-                String[] times = book_time[i];
+                book_int[i] = new int[]{start_time, end_time};
 
-                for (int j = 0; j < 2; j++) {
-
-                    book_time_int[i][j] = Integer.parseInt(times[j].split(":")[0]) * 60 + Integer.parseInt(times[j].split(":")[1]);
-
-                    if (j == 1) {
-
-                        book_time_int[i][j] += 10;
-                    }
-                }
             }
 
-            Arrays.sort(book_time_int, new Comparator<int[]>() {
+            Arrays.sort(book_int, new Comparator<int[]>() {
                 @Override
                 public int compare(int[] o1, int[] o2) {
 
                     if (o1[0] < o2[0]) {
 
                         return -1;
-                    } else if (o1[0] > o2[0]) {
+                    } else if (o1[0] == o2[0]) {
 
-                        return 1;
-
-                    } else {
-
-                        if (o1[1] < o2[1]) {
-
-                            return -1;
-                        } else {
-
-                            return 1;
-                        }
+                        return o2[1] - o1[1];
                     }
 
+                    return  1;
 
                 }
             });
 
-            System.out.println(Arrays.deepToString(book_time_int));
-            PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+            PriorityQueue<Integer> room_check_lst = new PriorityQueue<>();
 
-            for (int i = 0; i < book_time_int.length; i++) {
 
-                int[] room_time = {book_time_int[i][0],book_time_int[i][1]};
+            for (int i = 0; i < book_int.length; i++) {
 
-               if (priorityQueue.size() == 0) {
+                if (room_check_lst.isEmpty()) {
 
-                   priorityQueue.add(room_time[1]);
-                   continue;
-               }
+                    room_check_lst.add(book_int[i][1]);
+                } else {
 
-               if (room_time[0] >= priorityQueue.peek()) {
+                    if (room_check_lst.peek() <= book_int[i][0]) {
 
-                   priorityQueue.poll();
-                   priorityQueue.add(room_time[1]);
-               } else {
+                        room_check_lst.poll();
+                        room_check_lst.add(book_int[i][1]);
+                    } else {
 
-                   priorityQueue.add(room_time[1]);
-               }
+                        room_check_lst.add(book_int[i][1]);
+                    }
+                }
             }
 
-            return priorityQueue.size();
+
+            answer = room_check_lst.size();
+
+            return answer;
         }
     }
 }
