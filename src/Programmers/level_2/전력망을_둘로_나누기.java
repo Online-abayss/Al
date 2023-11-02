@@ -78,11 +78,10 @@ public class 전력망을_둘로_나누기 {
     static int[][] graph;
     static class Solution {
         public int solution(int n, int[][] wires) {
-            int answer = n + 1;
+            int answer = n;
 
             graph = new int[n + 1][n + 1];
 
-            // 입력하고
             for (int i = 0; i < wires.length; i++) {
 
                 graph[wires[i][0]][wires[i][1]] = 1;
@@ -94,14 +93,20 @@ public class 전력망을_둘로_나누기 {
 
             for (int i = 0; i < wires.length; i++) {
 
-                a = graph[i][0];
-                b = graph[i][1];
+                a = wires[i][0];
+                b = wires[i][1];
 
                 graph[a][b] = 0;
                 graph[b][a] = 0;
 
                 answer = Math.min(answer, bfs(n, a));
+
+
+                graph[a][b] = 1;
+                graph[b][a] = 1;
+
             }
+
 
             return answer;
         }
@@ -111,28 +116,28 @@ public class 전력망을_둘로_나누기 {
             boolean[] visited = new boolean[n + 1];
 
             Queue<Integer> queue = new LinkedList<>();
-            int cnt = 1;
 
             queue.add(a);
+            int cnt = 1;
 
             while (!queue.isEmpty()) {
 
-                visited[a] = true;
-                int point = queue.poll();
+                int start = queue.poll();
+                visited[start] = true;
 
                 for (int i = 1; i <= n; i++) {
 
-                    if (!visited[i] && graph[point][i] == 1) {
+                    if (!visited[i] && graph[start][i] == 1) {
 
                         cnt ++;
                         queue.add(i);
                     }
                 }
 
-            }
-
-            return Math.abs(n - 2 * cnt);
-
         }
+
+            return Math.abs(n-2 * cnt);
     }
+
+}
 }

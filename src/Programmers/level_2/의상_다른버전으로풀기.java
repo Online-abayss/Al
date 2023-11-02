@@ -1,6 +1,8 @@
 package Programmers.level_2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class 의상_다른버전으로풀기 {
@@ -17,26 +19,46 @@ public class 의상_다른버전으로풀기 {
 
     }
 
-    static class Solution {
+//    static class Solution {
+//
+//        public int solution(String[][] clothes) {
+//            int answer = 1;
+//
+//            Map<String, Integer> map = new HashMap<>();
+//
+//            for (int i = 0; i < clothes.length; i++) {
+//
+//                map.put(clothes[i][1], map.getOrDefault(clothes[i][1], 1) + 1);
+//            }
+//
+//            for (String key : map.keySet()) {
+//
+//                answer *= map.get(key);
+//            }
+//
+//            return answer - 1;
+//        }
+//
+//
+//    }
 
+    static class Solution {
         public int solution(String[][] clothes) {
             int answer = 1;
 
-            Map<String, Integer> map = new HashMap<>();
+            HashMap<String, Integer> record = new HashMap<>();
 
-            for (int i = 0; i < clothes.length; i++) {
+            for (String[] arr : clothes) {
 
-                map.put(clothes[i][1], map.getOrDefault(clothes[i][1], 1) + 1);
+                record.put(arr[1] , record.getOrDefault(arr[1], 0) + 1);
             }
 
-            for (String key : map.keySet()) {
+            for (String s : record.keySet()) {
 
-                answer *= map.get(key);
+                answer *= (record.get(s) + 1);
             }
 
             return answer - 1;
         }
-
-
     }
 }

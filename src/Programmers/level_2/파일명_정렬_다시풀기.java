@@ -63,10 +63,49 @@ public class 파일명_정렬_다시풀기 {
 
     static class Solution {
         public String[] solution(String[] files) {
-            String[] answer = {};
+
+            Arrays.sort(files, new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+
+                    String[] o1_arr = o1.split("[0-9]");
+                    String[] o2_arr = o2.split("[0-9]");
+
+                    int result = o1_arr[0].toLowerCase().compareTo(o2_arr[0]);
+
+                    if (result == 0) {
+
+                        result = number(o1, o1_arr[0]) - number(o2, o2_arr[0]);
+                    }
+
+                    return result;
+                }
+            });
 
 
-            return answer;
+            return files;
+        }
+
+        private int number(String o1, String head) {
+
+            o1 = o1.substring(head.length());
+
+            String word = "";
+
+            for (char ch : o1.toCharArray()) {
+
+                if (Character.isDigit(ch) && word.length() < 5) {
+
+                    word += ch;
+                } else {
+
+                    break;
+                }
+            }
+
+            return Integer.parseInt(word);
         }
     }
+
+
 }

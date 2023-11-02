@@ -51,28 +51,27 @@ public class 연속_부분_수열_합의_개수_다시풀기 {
         public int solution(int[] elements) {
             int answer = 0;
 
-            int[] map = new int[elements.length * 2];
+            int[] long_elements = new int[elements.length * 2];
 
             for (int i = 0; i < elements.length; i++) {
 
-                map[i] = elements[i];
-                map[i + elements.length] = elements[i];
+                long_elements[i] = elements[i];
+                long_elements[i + elements.length] = elements[i];
             }
 
-            HashSet<Integer> number_set = new HashSet<>();
+            HashSet<Integer> number = new HashSet<>();
 
             for (int i = 0; i <= elements.length; i++) {
 
                 int sum = 0;
-
                 for (int j = i; j < i + elements.length; j++) {
 
-                    sum += map[j];
-                    number_set.add(sum);
+                    sum += long_elements[j];
+                    number.add(sum);
                 }
             }
 
-            answer = number_set.size();
+            answer = number.size();
             return answer;
         }
     }
